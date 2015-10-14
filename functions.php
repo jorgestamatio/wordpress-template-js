@@ -49,6 +49,10 @@ require get_template_directory() . '/lib/inc/customizer.php';
  */
 require get_template_directory() . '/lib/inc/jetpack.php';
 
+/**
+ * Load Theme options
+ */
+require get_template_directory() . '/lib/theme-options.php';
 
 /****************************************
 Require Plugins

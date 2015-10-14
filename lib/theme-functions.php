@@ -5,6 +5,10 @@
  * @package _mbbasetheme
  */
 
+/**
+ * Load Metaboxes File
+ */
+include get_template_directory() . '/lib/theme-metaboxes.php';
 
 /**
  * Register Widget Areas
