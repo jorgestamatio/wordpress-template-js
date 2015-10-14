@@ -99,7 +99,7 @@ module.exports = function(grunt) {
                         'assets/js/source/plugins.js',
                         'assets/js/vendor/navigation.js',
                         'assets/js/vendor/skip-link-focus-fix.js',
-                        // 'assets/js/vendor/yourplugin/yourplugin.js',
+                        'assets/components/dist/jquery.js',
                     ]
                 }
             },
@@ -115,6 +115,19 @@ module.exports = function(grunt) {
                     ]
                 }
             }
+        },
+
+        /**
+         * Build bower components
+         * https://github.com/yatskevich/grunt-bower-task
+         */
+        bower: {
+          dev: {
+            dest: 'components/'
+          },
+          dist: {
+            dest: 'assets/components/'
+          }
         },
 
         // image optimization
@@ -141,9 +154,9 @@ module.exports = function(grunt) {
                     src : ['style.css', 'assets/js/*.js', 'assets/images/**/*.{png,jpg,jpeg,gif,webp,svg}']
                 },
                 options: {
-                    proxy: "local.dev",
+                    proxy: "paperboy-wp.dev",
                     watchTask: true,
-                    browser: "google chrome"
+                    browser: "safari"
                 }
             }
         },
@@ -176,10 +189,13 @@ module.exports = function(grunt) {
     // Load in `grunt-spritesmith`
     grunt.loadNpmTasks('grunt-spritesmith');
 
+
     // rename tasks
     grunt.renameTask('rsync', 'deploy');
 
     // register task
-    grunt.registerTask('default', ['sass', 'autoprefixer', 'cssmin', 'uglify', 'imagemin', 'browserSync', 'watch']);
+    grunt.registerTask('default', ['sass', 'autoprefixer', 'cssmin', 'uglify', 'bower','imagemin', 'browserSync', 'watch']);
+
+    grunt.registerTask('build', ['sass', 'autoprefixer', 'cssmin', 'uglify', 'imagemin']);
 
 };
